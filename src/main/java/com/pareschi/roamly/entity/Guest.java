@@ -11,7 +11,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Guest extends User {
+public class Guest extends User implements Rateble{
 
     @Id
     @EqualsAndHashCode.Include
@@ -19,4 +19,12 @@ public class Guest extends User {
     private Long id;
     @ManyToMany
     private Set<Stay> stays;
+    @OneToMany(mappedBy = "guest", cascade = CascadeType.ALL)
+    private Set<Rating> ratings;
+
+
+    @Override
+    public void addRating(Rating rating) {
+        ratings.add(rating);
+    }
 }

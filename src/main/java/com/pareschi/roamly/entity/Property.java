@@ -2,10 +2,7 @@ package com.pareschi.roamly.entity;
 
 import com.pareschi.roamly.entity.enums.TypeOfProperty;
 import com.pareschi.roamly.entity.interfaces.Rateble;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Set;
@@ -18,13 +15,17 @@ import java.util.Set;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Property implements Rateble {
 
+    @Id
+    @EqualsAndHashCode.Include
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String address;
     private TypeOfProperty typeOfProperty;
     @ManyToMany(mappedBy = "properties")
     private Set<Host> hosts;
     @OneToMany(mappedBy = "property")
     private Set<Stay> stays;
-    @OneToMany(mappedBy = "ratedProperty", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
     private Set<Rating> ratings;
 
     @Override

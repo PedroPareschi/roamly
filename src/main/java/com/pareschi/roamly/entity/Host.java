@@ -5,13 +5,14 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Host extends User {
+public class Host extends User implements Rateble{
 
     @Id
     @EqualsAndHashCode.Include
@@ -19,4 +20,12 @@ public class Host extends User {
     private Long id;
     @ManyToMany
     private List<Property> properties;
+
+    @OneToMany(mappedBy = "host", cascade = CascadeType.ALL)
+    private Set<Rating> ratings;
+
+    @Override
+    public void addRating(Rating rating) {
+        ratings.add(rating);
+    }
 }

@@ -12,7 +12,7 @@ import java.util.Set;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public abstract class User implements Rateble {
+public abstract class User {
 
     private String email;
     private String password;
@@ -20,13 +20,5 @@ public abstract class User implements Rateble {
     private String idNumber;
     private String phoneNumber;
     private String address;
-    private String stars;
-    @OneToMany(mappedBy = "ratedUser", cascade = CascadeType.ALL)
-    private Set<Rating> ratings;
-
-    @Override
-    public void addRating(Rating rating) {
-        this.getRatings().add(rating);
-    }
 
 }

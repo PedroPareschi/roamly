@@ -20,8 +20,13 @@ public class Rating {
     private String comment;
 
     @ManyToOne
-    private User user;
+    @JoinColumn(name = "rated_guest")
+    private Guest guest;
     @ManyToOne
+    @JoinColumn(name = "rated_host")
+    private Host host;
+    @ManyToOne
+    @JoinColumn(name = "rated_property")
     private Property property;
 
     public void rating(double stars) {
