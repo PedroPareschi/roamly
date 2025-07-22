@@ -9,7 +9,6 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -28,7 +27,7 @@ public class PropertyService {
         Property newProperty = new Property();
         newProperty.setTypeOfProperty(typeOfProperty);
         newProperty.setAddress(dto.getAddress());
-        Set<Host> hosts = hostService.getHosts(dto.getHosts());
+        Set<Host> hosts = hostService.getHosts(dto.getHostIds());
         if (hosts.isEmpty()) {
             throw new EntityNotFoundException("At least one of the hosts were not found");
         }
@@ -41,11 +40,8 @@ public class PropertyService {
         Property newProperty = searchProperty(id);
         newProperty.setTypeOfProperty(typeOfProperty);
         newProperty.setAddress(dto.getAddress());
-        Set<Host> hosts = hostService.getHosts(dto.getHosts());
+        Set<Host> hosts = hostService.getHosts(dto.getHostIds());
         if (!hosts.isEmpty()) {
-            for (Host host: hosts) {
-                host.addProperty(newProperty);
-            }
             newProperty.setHosts(hosts);
         }
         return repository.save(newProperty);

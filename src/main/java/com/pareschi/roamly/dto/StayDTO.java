@@ -3,13 +3,12 @@ package com.pareschi.roamly.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @AllArgsConstructor
 @Data
-public class PropertyDTO {
-
-    private String address;
-    private String typeOfProperty;
-    private Set<Long> hostIds;
+public class StayDTO {
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
 }

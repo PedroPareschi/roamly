@@ -1,5 +1,6 @@
 package com.pareschi.roamly.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pareschi.roamly.entity.interfaces.Rateble;
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,6 +19,7 @@ public class Guest extends User implements Rateble{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToMany(mappedBy = "guests")
+    @JsonIgnore
     private Set<Stay> stays;
     @OneToMany(mappedBy = "guest", cascade = CascadeType.ALL)
     private Set<Rating> ratings;

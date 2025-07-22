@@ -1,5 +1,6 @@
 package com.pareschi.roamly.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pareschi.roamly.entity.enums.TypeOfProperty;
 import com.pareschi.roamly.entity.interfaces.Rateble;
 import jakarta.persistence.*;
@@ -29,6 +30,7 @@ public class Property implements Rateble {
     )
     private Set<Host> hosts;
     @OneToMany(mappedBy = "property")
+    @JsonIgnore
     private Set<Stay> stays;
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
     private Set<Rating> ratings;

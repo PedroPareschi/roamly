@@ -8,6 +8,9 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
 @AllArgsConstructor
 public class GuestService {
@@ -46,5 +49,9 @@ public class GuestService {
     public void deleteGuest(Long id) {
         searchGuest(id);
         repository.deleteById(id);
+    }
+
+    public Set<Guest> getGuests(Set<Long> guestsIds) {
+        return new HashSet<>(repository.findAllById(guestsIds));
     }
 }
