@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.Set;
 
 @Entity
@@ -19,11 +18,17 @@ public class Stay {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
-    private ZonedDateTime startDate;
-    private ZonedDateTime endDate;
-    @ManyToMany(mappedBy = "stays")
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
+    @ManyToMany
+    @JoinTable(name = "stay_guest",
+            joinColumns =
+            @JoinColumn(name = "stay_id"),
+            inverseJoinColumns =
+            @JoinColumn(name = "guest_id")
+    )
     private Set<Guest> guests;
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "property_id", nullable = false)
     private Property property;
 }

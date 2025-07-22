@@ -6,12 +6,11 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum TypeOfProperty {
-    HOUSE("House"),
-    APARTMENT("Apartment"),
-    HOTEL("Hotel"),
-    HOSTEL("Hostel"),
-    TENT("Tent"),
-    STUDIO("Studio"),
-    BEDROOM("Bedroom");
-    private String name;
+    HOUSE,
+    APARTMENT,
+    HOTEL,
+    HOSTEL,
+    TENT,
+    STUDIO,
+    BEDROOM;
 }

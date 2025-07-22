@@ -3,7 +3,6 @@ package com.pareschi.roamly.controller;
 import com.pareschi.roamly.dto.UserDTO;
 import com.pareschi.roamly.entity.Host;
 import com.pareschi.roamly.service.HostService;
-import com.pareschi.roamly.service.HostService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

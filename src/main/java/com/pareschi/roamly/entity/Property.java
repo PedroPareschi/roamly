@@ -21,7 +21,12 @@ public class Property implements Rateble {
     private Long id;
     private String address;
     private TypeOfProperty typeOfProperty;
-    @ManyToMany(mappedBy = "properties")
+    @ManyToMany
+    @JoinTable(
+            name = "property_host",
+            joinColumns = @JoinColumn(name = "property_id"),
+            inverseJoinColumns = @JoinColumn(name = "host_id")
+    )
     private Set<Host> hosts;
     @OneToMany(mappedBy = "property")
     private Set<Stay> stays;

@@ -17,7 +17,7 @@ public class Guest extends User implements Rateble{
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToMany
+    @ManyToMany(mappedBy = "guests")
     private Set<Stay> stays;
     @OneToMany(mappedBy = "guest", cascade = CascadeType.ALL)
     private Set<Rating> ratings;

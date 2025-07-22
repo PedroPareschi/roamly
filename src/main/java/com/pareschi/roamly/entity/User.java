@@ -14,6 +14,10 @@ import java.util.Set;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public abstract class User {
 
+    @Id
+    @EqualsAndHashCode.Include
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String email;
     private String password;
     private String name;
